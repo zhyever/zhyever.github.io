@@ -296,14 +296,39 @@ padding: 8px;
 
 td.pub_td1
 {
-width:50px;
+  width:50px;
 }
 td.pub_td1 img
 {
-  /*height:120px;*/
   width: 160px;
 }
 
 table.pub_table tr {
+  /*outline: thin dotted #666666;*/
+}
+
+
+table.codebase_table,td.codebase_table_td1,td.codebase_table_td2
+{
+padding: 8px;
+/* width: 860px; */
+    border-collapse: separate;
+    border-spacing: 15px;
+    margin-top: -5px;
+}
+
+td.codebase_table_td1
+{
+	color: gray;
+	font-size: 60%;
+	font-family: monaco;
+  	width: 50px;
+}
+td.codebase_table_td1 img
+{
+  	width: 320px;
+}
+
+table.codebase_table tr {
   /*outline: thin dotted #666666;*/
 }
