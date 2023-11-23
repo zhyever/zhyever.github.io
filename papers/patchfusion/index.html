@@ -140,19 +140,22 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">PatchFusion: An End-to-End Tile-Based Framework for High-Resolution Monocular Metric Depth Estimation</h1>
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
+            <!-- <span class="author-block">
               <a href="https://zhyever.github.io/">Zhenyu Li</a>,  </span>
             <span class="author-block">
               <a href="https://shariqfarooq123.github.io/">Shariq Farooq Bhat</a>,  </span>
             <span class="author-block">
             <span class="author-block">
               <a href="https://peterwonka.net/">Peter Wonka</a>
+            </span> -->
+            <span class="author-block">
+              Paper 4564
             </span>
           </div>
 
-          <div class="is-size-5 publication-authors">
+          <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">KAUST</span>
-          </div>
+          </div> -->
 
           <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">XXXX 2023</span>
@@ -161,7 +164,7 @@
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- Paper Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://zhyever.github.io/papers/patchfusion" 
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -169,11 +172,11 @@
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span>
+              </span> -->
               
               <!-- Video Link. -->
               <!-- Code Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://zhyever.github.io/papers/patchfusion"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -181,7 +184,7 @@
                   </span>
                   <span>Code (Coming Soon)</span>
                   </a>
-              </span>
+              </span> -->
 
             </div>
 
@@ -229,7 +232,10 @@
       <div class="column ">
         <div class="content" style="text-align:center;">
           <h2 class="title is-3 has-text-centered">🚀 Motivation</h2>
-          <img src="images/teaser.jpg" class="" style="width: 80%;margin-bottom: 2%;">
+          <!-- <img src="images/teaser.jpg" class="" style="width: 80%;margin-bottom: 2%;"> -->
+          <video style="width: 95%; margin-bottom: 2%;" controls>
+            <source src="images/framework.mp4" type=video/mp4>
+          </video>
           
           <p style="text-align:center;" class="has-text-justified">
             Most SOTA depth estimation architectures are bottlenecked by the resolution capabilities of their backbone, leading to blur depth predictions. For instance, ZoeDepth processes an input resolution of 384x512, VPD manages 480x480, and AiT is designed for 384x512. These figures pale in comparison to the resolutions offered by modern consumer cameras, such as the 45 Megapixel Canon EOS R5, the widely available 8K televisions, and even mobile devices like the iPhone 15, which boasts a 12MP Ultra Wide lens.
@@ -273,7 +279,12 @@
           </p>
 
           <h2 class="title is-4">Consistency-Aware Training and Inference</h2>
-          <img src="images/cat&cai.jpg" class="" style="width: 68%; margin-bottom: 2%;">
+          <!-- <img src="images/cat.jpg" class="" style="width: 68%; margin-bottom: 2%;"> -->
+
+          <!-- <video width="1280px" height="960px" controls> -->
+          <video style="width: 80%; margin-bottom: 2%;" controls>
+            <source src="images/cai.mp4" type=video/mp4>
+          </video>
 
           <p style="text-align:center;" class="has-text-justified">
           While our Guided Fusion Network with G2L makes scale-aware predictions, boundary inconsistencies still exist. Recognizing this gap, we introduce Consistency-Aware Training (CAT) and Inference (CAI) to ensure patch-wise depth prediction consistency.
@@ -334,22 +345,25 @@
           <p style="text-align:center; " class="has-text-centered">
             <h2 class="title is-4">Zero-Shot Transfer (Out-of-Domain from Middleburry 2014)</h2>
           </p>
-          <img src="images/interactive/case1.png" class="" style="width: 100%;margin-bottom: 2%;">
+          <img src="images/interactive/case3.png" class="" style="width: 100%;margin-bottom: 2%;">
           <iframe frameborder="0" class="juxtapose" style="width: 100%; height: 540px;" src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=22a7b6e0-87b8-11ee-9ddd-3f41531135b6"></iframe>
 
-          
-          
-
-          <p style="text-align:center; " class="has-text-centered">
-            <h2 class="title is-4">Depth-Guided Text-to-Image Generation (Out-of-Domain from Middleburry 2014)</h2>
-          </p>
-          yyy
-
+          <img src="images/interactive/case4.png" class="" style="width: 100%;margin-bottom: 2%;">
+          <iframe frameborder="0" class="juxtapose" style="width: 100%; height: 540px;" src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=22a7b6e0-87b8-11ee-9ddd-3f41531135b6"></iframe>
 
           <p style="text-align:center; " class="has-text-centered"></p>
             <h2 class="title is-4">Depth-Guided Text-to-Image Generation (Out-of-Domain from Internet)</h2>
           </p>
-          zzz
+
+          Input Image (from Quang Nguyen Vinh):
+          <img src="images/interactive/case5.png" class="" style="width: 100%;margin-bottom: 2%;">
+          Text Prompt: An oil painting of a rice field, with warm lighting and rich texture
+
+          Base Depth Model in ControlNet and Result
+          <iframe frameborder="0" class="juxtapose" style="width: 100%; height: 540px;" src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=22a7b6e0-87b8-11ee-9ddd-3f41531135b6"></iframe>
+
+          PatchFusion and Result
+          <iframe frameborder="0" class="juxtapose" style="width: 100%; height: 540px;" src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=22a7b6e0-87b8-11ee-9ddd-3f41531135b6"></iframe>
           
           
       </div>
@@ -367,7 +381,7 @@
         <div class="content">
           <h2 class="title is-3  has-text-centered">🔥 Citation</h2>
             <div class="language-css">
-            <pre  style="">
+            <pre style="">
               <code>
               @article{
 
