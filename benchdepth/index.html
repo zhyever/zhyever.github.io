@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="BenchDepth">
+  <meta name="keywords" content="BenchDepth">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BenchDepth</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="./static/css/bootstrap-4.4.1.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./images/website.png">
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/app.js"></script>
+  <script src="./static/js/video_comparison.js"></script>
+
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <script src="./static/js/event_handler.js"></script>
+  <script src="./static/js/dics.original.js"></script>
+
+  <script src="https://kit.fontawesome.com/e8d9e5563c.js" crossorigin="anonymous"></script> 
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style="margin-bottom: 0"><strong>BenchDepth</strong></h1>
+          <h2 class="title is-3 publication-title" style="margin-top: 0; margin-bottom: 0">Are We on the Right Way to Evaluate Depth Foundation Models?</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://zhyever.github.io/">Zhenyu Li</a><sup>1,2</sup>,  </span>
+            <span class="author-block">
+              <a href="https://haotongl.github.io/">Haotong Lin</a><sup>2,3</sup>,  </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=Q8iay0gAAAAJ&hl=en">Jiashi Feng</a><sup>2</sup>,  </span>
+            <span class="author-block">
+              <a href="https://peterwonka.net/">Peter Wonka</a><sup>1</sup>,  </span>
+            <span class="author-block">
+              <a href="https://bingykang.github.io/">Bingyi Kang</a><sup>2</sup></span>
+            
+            <!-- <span class="author-block">
+              Paper 4564
+            </span> -->
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>KAUST</span>   &nbsp;  
+            <span class="author-block"><sup>2</sup>ByteDance Seed</span>   &nbsp;  
+            <span class="author-block"><sup>3</sup>Zhejiang University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/tbd" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/zhyever/BenchDepth"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+            </div>
+          </div>
+          <div style="text-align:center;">
+			<img src="./images/teaser.png" alt="left" width="80%">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="margin-top: -30px">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            Depth estimation is a fundamental task in computer vision with diverse applications. Recent advancements in deep learning have led to powerful depth foundation models (DFMs), yet their evaluation remains challenging due to inconsistencies in existing protocols. Traditional benchmarks rely on alignment-based metrics that introduce biases, favor certain depth representations, and complicate fair comparisons. 
+
+            In this work, we propose <strong>BenchDepth</strong>, a new benchmark that <strong>evaluates DFMs through five carefully selected downstream proxy tasks: depth completion, stereo matching, monocular feed-forward 3D scene reconstruction, SLAM, and vision-language spatial understanding.</strong> Unlike conventional evaluation protocols, our approach assesses DFMs based on their practical utility in real-world applications, bypassing problematic alignment procedures. 
+
+            We benchmark eight state-of-the-art DFMs and provide an in-depth analysis of key findings and observations. We hope our work sparks further discussion in the community on best practices for depth model evaluation and paves the way for future research and advancements in depth estimation.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- New Tabbed Tables Section -->
+<section class="section">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered" style="margin-top: -30px">Benchmark Tables</h2>
+        <p style="text-align:center;" class="has-text-centered">
+          Click on tabs to view different benchmark results and comparisons.
+        </p>
+        <br>
+        
+        <!-- Tab Navigation -->
+        <div class="container">
+          <ul class="nav nav-tabs nav-fill nav-justified" id="table-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" onclick="switchTableTab(0)">Overall Results</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="switchTableTab(1)">Depth Completion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="switchTableTab(2)">Stereo Matching</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="switchTableTab(3)">Mono 3DGS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="switchTableTab(4)">SLAM</a>
+              </li>
+          </ul>
+          
+          <!-- Table Content Container -->
+          <div class="table-container" style="margin-top: 20px;">
+            <!-- Table 0: Multi-dataset Comparison -->
+            <div id="table-0" class="table-content active">
+              <table class="table is-striped is-hoverable is-fullwidth multi-dataset-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="vertical-align: middle;">Method</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">Depth Completion</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">Stereo Matching</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">Mono 3DGS</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">SLAM</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">VLM Spatial Understanding</th>
+                    <th colspan="1" class="dataset-header">Average rank</th>
+                  </tr>
+                  <tr>
+                    <th>imp <span class="sort-arrow">↑</span></th>
+                    <th>rank <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">imp <span class="sort-arrow">↑</span></th>
+                    <th>rank <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">imp <span class="sort-arrow">↑</span></th>
+                    <th>rank <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">imp <span class="sort-arrow">↑</span></th>
+                    <th>rank <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">imp <span class="sort-arrow">↑</span></th>
+                    <th>rank <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split" style="text-align: center;">rank <span class="sort-arrow">↓</span></th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Midas</strong></td>
+                    <td>+3.09</td><td>4</td>
+                    <td class="dataset-split">-3.07</td><td>7</td>
+                    <td class="dataset-split cell-red">+5.24</td><td class="cell-red">1</td>
+                    <td class="dataset-split">+2.32</td><td>5</td>
+                    <td class="dataset-split">-</td><td>-</td>
+                    <td class="dataset-split">4.25</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DAV2-Rel</strong></td>
+                    <td class="cell-red">+9.26</td><td class="cell-red">1</td>
+                    <td class="dataset-split cell-red">+5.77</td><td class="cell-red">1</td>
+                    <td class="dataset-split cell-yellow">+4.21</td><td class="cell-yellow">3</td>
+                    <td class="dataset-split cell-red">+10.00</td><td class="cell-red">1</td>
+                    <td class="dataset-split">-</td><td>-</td>
+                    <td class="dataset-split cell-red">1.50</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DAV2-Met</strong></td>
+                    <td class="cell-orange">+6.48</td><td class="cell-orange">2</td>
+                    <td class="dataset-split">+1.46</td><td>5</td>
+                    <td class="dataset-split cell-orange">+4.81</td><td class="cell-orange">2</td>
+                    <td class="dataset-split">+1.95</td><td>6</td>
+                    <td class="dataset-split">-</td><td>-</td>
+                    <td class="dataset-split cell-yellow">3.75</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Metric3DV2</strong></td>
+                    <td>-0.38</td><td>8</td>
+                    <td class="dataset-split">-1.74</td><td>6</td>
+                    <td class="dataset-split">-0.05</td><td>5</td>
+                    <td class="dataset-split">-4.19</td><td>-</td>
+                    <td class="dataset-split">-</td><td>-</td>
+                    <td class="dataset-split">4.75</td>
+                  </tr>
+                  <tr>
+                    <td><strong>UniDepth</strong></td>
+                    <td>+2.97</td><td>5</td>
+                    <td class="dataset-split">-3.68</td><td>8</td>
+                    <td class="dataset-split">-0.10</td><td>6</td>
+                    <td class="dataset-split cell-orange">+7.08</td><td class="cell-orange">2</td>
+                    <td class="dataset-split">-</td><td>-</td>
+                    <td class="dataset-split">5.25</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Marigold</strong></td>
+                    <td>+1.76</td><td>6</td>
+                    <td class="dataset-split">+1.87</td><td>4</td>
+                    <td class="dataset-split">-4.19</td><td>8</td>
+                    <td class="dataset-split">+4.67</td><td>4</td>
+                    <td class="dataset-split">-</td><td>-</td>
+                    <td class="dataset-split">5.50</td>
+                  </tr>
+                  <tr>
+                    <td><strong>GenPercept</strong></td>
+                    <td class="cell-yellow">+6.16</td><td class="cell-yellow">3</td>
+                    <td class="dataset-split cell-yellow">+1.99</td><td class="cell-yellow">3</td>
+                    <td class="dataset-split">-0.14</td><td>4</td>
+                    <td class="dataset-split cell-yellow">+6.16</td><td class="cell-yellow">3</td>
+                    <td class="dataset-split">-</td><td>-</td>
+                    <td class="dataset-split cell-orange">3.25</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MoGe</strong></td>
+                    <td>+1.53</td><td>7</td>
+                    <td class="dataset-split cell-orange">+2.70</td><td class="cell-orange">2</td>
+                    <td class="dataset-split">-1.60</td><td>7</td>
+                    <td class="dataset-split">-4.04</td><td>7</td>
+                    <td class="dataset-split">-</td><td>-</td>
+                    <td class="dataset-split">5.75</td>
+                  </tr>
+                  
+                 
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Table 1: Depth Completion -->
+            <div id="table-1" class="table-content">
+              <table class="table is-striped is-hoverable is-fullwidth multi-dataset-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="vertical-align: middle;">Method</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">100</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">32</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">8</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">4</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">1</th>
+                    <th colspan="2" class="dataset-header">Overall</th>
+                  </tr>
+                  <tr>
+                    <th>rmse <span class="sort-arrow">↓</span></th>
+                    <th>mse <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">rmse <span class="sort-arrow">↓</span></th>
+                    <th>mse <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">rmse <span class="sort-arrow">↓</span></th>
+                    <th>mse <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">rmse <span class="sort-arrow">↓</span></th>
+                    <th>mse <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">rmse <span class="sort-arrow">↓</span></th>
+                    <th>mse <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">rmse <span class="sort-arrow">↓</span></th>
+                    <th>rank <span class="sort-arrow">↓</span></th>
+
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Midas</strong></td>
+                    <td>0.204</td><td>0.114</td>
+                    <td class="dataset-split">0.294</td><td>0.182</td>
+                    <td class="dataset-split">0.449</td><td>0.311</td>
+                    <td class="dataset-split">0.493</td><td>0.355</td>
+                    <td class="dataset-split">0.556</td><td>0.414</td>
+                    <td class="dataset-split">+3.09</td><td>4</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>DAV2-Rel</strong></td>
+                    <td class="cell-red">0.191</td><td class="cell-red">0.099</td>
+                    <td class="dataset-split cell-red">0.279</td><td class="cell-red">0.166</td>
+                    <td class="dataset-split cell-red">0.427</td><td class="cell-red">0.292</td>
+                    <td class="dataset-split cell-red">0.471</td><td class="cell-red">0.336</td>
+                    <td class="dataset-split cell-orange">0.533</td><td class="cell-orange">0.396</td>
+                    <td class="dataset-split cell-red">+9.26</td><td class="cell-red">1</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>DAV2-Met</strong></td>
+                    <td class="cell-yellow">0.202</td><td class="cell-yellow">0.112</td>
+                    <td class="dataset-split cell-yellow">0.287</td><td class="cell-yellow">0.178</td>
+                    <td class="dataset-split cell-orange">0.431</td><td class="cell-orange">0.297</td>
+                    <td class="dataset-split cell-orange">0.472</td><td class="cell-orange">0.338</td>
+                    <td class="dataset-split cell-red">0.529</td><td class="cell-red">0.392</td>
+                    <td class="dataset-split cell-orange">+6.48</td><td class="cell-orange">2</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>Metric3DV2</strong></td>
+                    <td>0.216</td><td>0.128</td>
+                    <td class="dataset-split">0.306</td><td>0.195</td>
+                    <td class="dataset-split">0.454</td><td>0.317</td>
+                    <td class="dataset-split">0.497</td><td>0.359</td>
+                    <td class="dataset-split">0.557</td><td>0.415</td>
+                    <td class="dataset-split">-0.38</td><td>8</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>UniDepth</strong></td>
+                    <td>0.210</td><td>0.122</td>
+                    <td class="dataset-split">0.296</td><td>0.187</td>
+                    <td class="dataset-split">0.438</td><td>0.308</td>
+                    <td class="dataset-split">0.480</td><td>0.349</td>
+                    <td class="dataset-split cell-yellow">0.540</td><td>0.404</td>
+                    <td class="dataset-split">+2.97</td><td>5</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>Marigold</strong></td>
+                    <td>0.210</td><td>0.121</td>
+                    <td class="dataset-split">0.296</td><td>0.187</td>
+                    <td class="dataset-split">0.448</td><td>0.314</td>
+                    <td class="dataset-split">0.491</td><td>0.356</td>
+                    <td class="dataset-split">0.555</td><td>0.414</td>
+                    <td class="dataset-split">+1.76</td><td>6</td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td><strong>GenPercept</strong></td>
+                    <td class="cell-orange">0.199</td><td class="cell-orange">0.110</td>
+                    <td class="dataset-split cell-orange">0.284</td><td class="cell-orange">0.174</td>
+                    <td class="dataset-split cell-yellow">0.436</td><td class="cell-yellow">0.301</td>
+                    <td class="dataset-split cell-yellow">0.479</td><td class="cell-yellow"">0.342</td>
+                    <td class="dataset-split">0.542</td><td class="cell-yellow">0.402</td>
+                    <td class="dataset-split cell-yellow">+6.16</td><td class="cell-yellow">3</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>MoGe</strong></td>
+                    <td>0.210</td><td>0.124</td>
+                    <td class="dataset-split">0.295</td><td>0.188</td>
+                    <td class="dataset-split">0.444</td><td>0.312</td>
+                    <td class="dataset-split">0.489</td><td>0.355</td>
+                    <td class="dataset-split">0.558</td><td>0.417</td>
+                    <td class="dataset-split">+1.53</td><td>7</td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Table 2: Stereo Matching -->
+            <div id="table-2" class="table-content">
+              <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>RMSE ↓</th>
+                    <th>MAE ↓</th>
+                    <th>δ<1.25 ↑</th>
+                    <th>δ<1.25² ↑</th>
+                    <th>δ<1.25³ ↑</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ZoeDepth</strong></td>
+                    <td>0.245</td>
+                    <td>0.189</td>
+                    <td>0.892</td>
+                    <td>0.967</td>
+                    <td>0.989</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DPT</strong></td>
+                    <td>0.267</td>
+                    <td>0.201</td>
+                    <td>0.876</td>
+                    <td>0.958</td>
+                    <td>0.985</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MiDaS</strong></td>
+                    <td>0.289</td>
+                    <td>0.218</td>
+                    <td>0.854</td>
+                    <td>0.945</td>
+                    <td>0.978</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Table 3: 3DGS -->
+            <div id="table-3" class="table-content">
+              <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>EPE ↓</th>
+                    <th>3PE ↓</th>
+                    <th>D1 ↑</th>
+                    <th>D3 ↑</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ZoeDepth</strong></td>
+                    <td>1.23</td>
+                    <td>2.45</td>
+                    <td>0.923</td>
+                    <td>0.987</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DPT</strong></td>
+                    <td>1.45</td>
+                    <td>2.78</td>
+                    <td>0.901</td>
+                    <td>0.976</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MiDaS</strong></td>
+                    <td>1.67</td>
+                    <td>3.12</td>
+                    <td>0.878</td>
+                    <td>0.964</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Table 4: SLAM -->
+            <div id="table-4" class="table-content">
+              <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>Chamfer Distance ↓</th>
+                    <th>F-Score ↑</th>
+                    <th>Precision ↑</th>
+                    <th>Recall ↑</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ZoeDepth</strong></td>
+                    <td>0.156</td>
+                    <td>0.847</td>
+                    <td>0.892</td>
+                    <td>0.823</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DPT</strong></td>
+                    <td>0.178</td>
+                    <td>0.823</td>
+                    <td>0.867</td>
+                    <td>0.798</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MiDaS</strong></td>
+                    <td>0.201</td>
+                    <td>0.798</td>
+                    <td>0.843</td>
+                    <td>0.774</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <br>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="margin-top: -30px">Observations</h2>
+        <div class="content has-text-justified">
+          
+          <h3>Task Definition</h3>
+          <p>
+            xx
+          </p>
+
+          <h3>Dataset Collection</h3>
+          <p>
+            xx
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3  has-text-centered">🔥 Citation</h2>
+            <div class="language-css">
+            <pre style="">
+<code>@article{li2025benchdepth,
+  title={BenchDepth: A Benchmark for Evaluating Depth Foundation Models}, 
+  author={Li, Zhenyu and Lin, Haotong and Feng, Jiashi and Wonka, Peter and Kang, Bingyi},
+  year={2025},
+  journal={arXiv preprint arXiv:tbd},
+  primaryClass={cs.CV}}</code></pre>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This webpage template is from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and Mip-Splatting<a href="https://niujinshuchong.github.io/mip-splatting/">.
+          </p>
+        </div>
+      </div>
+          <p></p>
+        </div>
+      </div>
+</footer>
+
+</body>
+</html>
