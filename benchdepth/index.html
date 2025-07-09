@@ -46,8 +46,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title" style="margin-bottom: 0"><strong>BenchDepth</strong></h1>
-          <h2 class="title is-3 publication-title" style="margin-top: 0; margin-bottom: 0">Are We on the Right Way to Evaluate Depth Foundation Models?</h2>
+          <!-- <h1 class="title is-1 publication-title" style="margin-bottom: 0"><strong>BenchDepth</strong></h1> -->
+          <h2 class="title is-3 publication-title" style="margin-top: 0; margin-bottom: 0">BenchDepth: Are We on the Right Way to Evaluate Depth Foundation Models?</h2>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://zhyever.github.io/">Zhenyu Li</a><sup>1,2</sup>,  </span>
@@ -107,7 +107,6 @@
   </div>
 </section>
 
-
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -115,9 +114,9 @@
         <h2 class="title is-3" style="margin-top: -30px">Overview</h2>
         <div class="content has-text-justified">
           <p>
-            Depth estimation is a fundamental task in computer vision with diverse applications. Recent advancements in deep learning have led to powerful depth foundation models (DFMs), yet their evaluation remains challenging due to inconsistencies in existing protocols. Traditional benchmarks rely on alignment-based metrics that introduce biases, favor certain depth representations, and complicate fair comparisons. 
+            Depth estimation is a fundamental task in computer vision with diverse applications. Recent advancements in deep learning have led to powerful depth foundation models (DFMs), yet their evaluation remains challenging due to inconsistencies in existing protocols. Traditional benchmarks rely on <strong>alignment-based metrics that introduce biases</strong>, favor certain depth representations, and complicate fair comparisons. 
 
-            In this work, we propose <strong>BenchDepth</strong>, a new benchmark that <strong>evaluates DFMs through five carefully selected downstream proxy tasks: depth completion, stereo matching, monocular feed-forward 3D scene reconstruction, SLAM, and vision-language spatial understanding.</strong> Unlike conventional evaluation protocols, our approach assesses DFMs based on their practical utility in real-world applications, bypassing problematic alignment procedures. 
+            In this work, we propose BenchDepth, a new benchmark that <strong>evaluates DFMs through five carefully selected downstream proxy tasks: depth completion, stereo matching, monocular feed-forward 3D scene reconstruction, SLAM, and vision-language spatial understanding.</strong> Unlike conventional evaluation protocols, our approach assesses DFMs based on their practical utility in real-world applications, <strong>bypassing problematic alignment procedures.</strong>
 
             We benchmark eight state-of-the-art DFMs and provide an in-depth analysis of key findings and observations. We hope our work sparks further discussion in the community on best practices for depth model evaluation and paves the way for future research and advancements in depth estimation.
         </div>
@@ -222,7 +221,7 @@
                     <td class="dataset-split">-0.05</td><td>5</td>
                     <td class="dataset-split">-4.19</td><td>-</td>
                     <td class="dataset-split">-</td><td>-</td>
-                    <td class="dataset-split">4.75</td>
+                    <td class="dataset-split">6.33</td>
                   </tr>
                   <tr>
                     <td><strong>UniDepth</strong></td>
@@ -277,7 +276,7 @@
                     <th colspan="2" class="dataset-header" style="width: 160px;">8</th>
                     <th colspan="2" class="dataset-header" style="width: 160px;">4</th>
                     <th colspan="2" class="dataset-header" style="width: 160px;">1</th>
-                    <th colspan="2" class="dataset-header">Overall</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">Overall</th>
                   </tr>
                   <tr>
                     <th>rmse <span class="sort-arrow">↓</span></th>
@@ -290,13 +289,23 @@
                     <th>mse <span class="sort-arrow">↓</span></th>
                     <th class="dataset-split">rmse <span class="sort-arrow">↓</span></th>
                     <th>mse <span class="sort-arrow">↓</span></th>
-                    <th class="dataset-split">rmse <span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">imp. <span class="sort-arrow">↑</span></th>
                     <th>rank <span class="sort-arrow">↓</span></th>
 
                     
                   </tr>
                 </thead>
                 <tbody>
+                  <tr>
+                    <td><strong>w/o DFM</strong></td>
+                    <td>0.206</td><td class="cell-orange">0.102</td>
+                    <td class="dataset-split">0.334</td><td>0.199</td>
+                    <td class="dataset-split">0.486</td><td>0.340</td>
+                    <td class="dataset-split">0.514</td><td>0.370</td>
+                    <td class="dataset-split">0.550</td><td>0.406</td>
+                    <td class="dataset-split">-</td><td>-</td>
+                  </tr>
+
                   <tr>
                     <td><strong>Midas</strong></td>
                     <td>0.204</td><td>0.114</td>
@@ -319,7 +328,7 @@
 
                   <tr>
                     <td><strong>DAV2-Met</strong></td>
-                    <td class="cell-yellow">0.202</td><td class="cell-yellow">0.112</td>
+                    <td class="cell-yellow">0.202</td><td>0.112</td>
                     <td class="dataset-split cell-yellow">0.287</td><td class="cell-yellow">0.178</td>
                     <td class="dataset-split cell-orange">0.431</td><td class="cell-orange">0.297</td>
                     <td class="dataset-split cell-orange">0.472</td><td class="cell-orange">0.338</td>
@@ -360,7 +369,7 @@
                   
                   <tr>
                     <td><strong>GenPercept</strong></td>
-                    <td class="cell-orange">0.199</td><td class="cell-orange">0.110</td>
+                    <td class="cell-orange">0.199</td><td class="cell-yellow">0.110</td>
                     <td class="dataset-split cell-orange">0.284</td><td class="cell-orange">0.174</td>
                     <td class="dataset-split cell-yellow">0.436</td><td class="cell-yellow">0.301</td>
                     <td class="dataset-split cell-yellow">0.479</td><td class="cell-yellow"">0.342</td>
@@ -384,118 +393,371 @@
 
             <!-- Table 2: Stereo Matching -->
             <div id="table-2" class="table-content">
-              <table class="table is-striped is-hoverable is-fullwidth">
+              <table class="table is-striped is-hoverable is-fullwidth multi-dataset-table">
                 <thead>
                   <tr>
-                    <th>Model</th>
-                    <th>RMSE ↓</th>
-                    <th>MAE ↓</th>
-                    <th>δ<1.25 ↑</th>
-                    <th>δ<1.25² ↑</th>
-                    <th>δ<1.25³ ↑</th>
+                    <th rowspan="2" style="vertical-align: middle;">Method</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">SceneFlow</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">Middlebury</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">ETH3D</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">Overall</th>
+                  </tr>
+                  <tr>
+                    <th>epe <span class="sort-arrow">↓</span></th>
+                    <th>>3pt<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">epe <span class="sort-arrow">↓</span></th>
+                    <th>>2pt<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">epe <span class="sort-arrow">↓</span></th>
+                    <th>>1pt<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">imp. <span class="sort-arrow">↑</span></th>
+                    <th>rank <span class="sort-arrow">↓</span></th>
                   </tr>
                 </thead>
                 <tbody>
+
                   <tr>
-                    <td><strong>ZoeDepth</strong></td>
-                    <td>0.245</td>
-                    <td>0.189</td>
-                    <td>0.892</td>
-                    <td>0.967</td>
-                    <td>0.989</td>
+                    <td><strong>w/o DFM</strong></td>
+                    <td>0.496</td><td>2.599</td>
+                    <td class="dataset-split cell-orange">0.857</td><td>6.655</td>
+                    <td class="dataset-split">0.283</td><td>3.575</td>
+                    <td class="dataset-split">-</td><td>-</td>
                   </tr>
+    
                   <tr>
-                    <td><strong>DPT</strong></td>
-                    <td>0.267</td>
-                    <td>0.201</td>
-                    <td>0.876</td>
-                    <td>0.958</td>
-                    <td>0.985</td>
+                    <td><strong>Midas</strong></td>
+                    <td>0.483</td><td>2.502</td>
+                    <td class="dataset-split">1.061</td><td>7.316</td>
+                    <td class="dataset-split cell-yellow">0.273</td><td class="cell-yellow">3.383</td>
+                    <td class="dataset-split">-3.07</td><td>7</td>
                   </tr>
+
                   <tr>
-                    <td><strong>MiDaS</strong></td>
-                    <td>0.289</td>
-                    <td>0.218</td>
-                    <td>0.854</td>
-                    <td>0.945</td>
-                    <td>0.978</td>
+                    <td><strong>DAV2-Rel</strong></td>
+                    <td class="cell-red">0.456</td><td class="cell-red">2.432</td>
+                    <td class="dataset-split cell-red">0.834</td><td class="cell-yellow">6.399</td>
+                    <td class="dataset-split">0.275</td><td class="cell-red">3.189</td>
+                    <td class="dataset-split cell-red">+5.77</td><td class="cell-red">1</td>
                   </tr>
+
+
+                  <tr>
+                    <td><strong>DAV2-Met</strong></td>
+                    <td class="cell-orange">0.471</td><td class="cell-orange">2.473</td>
+                    <td class="dataset-split">0.938</td><td class="cell-orange">6.177</td>
+                    <td class="dataset-split cell-orange">0.270</td><td>3.698</td>
+                    <td class="dataset-split">+1.46</td><td>5</td>
+                  </tr>
+
+
+                  <tr>
+                    <td><strong>Metric3DV2</strong></td>
+                    <td>0.482</td><td>2.521</td>
+                    <td class="dataset-split">0.949</td><td>7.309</td>
+                    <td class="dataset-split">0.275</td><td>3.523</td>
+                    <td class="dataset-split">-1.74</td><td>6</td>
+                  </tr>
+
+
+                  <tr>
+                    <td><strong>UniDepth</strong></td>
+                    <td>0.477</td><td>2.521</td>
+                    <td class="dataset-split">0.964</td><td>7.242</td>
+                    <td class="dataset-split">0.285</td><td>3.822</td>
+                    <td class="dataset-split">-3.68</td><td>8</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>Marigold</strong></td>
+                    <td>0.475</td><td>2.499</td>
+                    <td class="dataset-split cell-yellow">0.899</td><td>6.519</td>
+                    <td class="dataset-split cell-yellow">0.273</td><td>3.485</td>
+                    <td class="dataset-split">+1.87</td><td>4</td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td><strong>GenPercept</strong></td>
+                    <td class="cell-yellow">0.473</td><td>2.485</td>
+                    <td class="dataset-split">0.935</td><td>6.649</td>
+                    <td class="dataset-split cell-red">0.265</td><td class="cell-orange">3.374</td>
+                    <td class="dataset-split cell-yellow">+1.99</td><td class="cell-yellow">3</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>MoGe</strong></td>
+                    <td class="cell-yellow">0.473</td><td class="cell-yellow">2.481</td>
+                    <td class="dataset-split">0.907</td><td class="cell-red">5.951</td>
+                    <td class="dataset-split">0.279</td><td>3.544</td>
+                    <td class="dataset-split cell-orange">+2.70</td><td class="cell-orange">2</td>
+                  </tr>
+                 
                 </tbody>
               </table>
             </div>
 
             <!-- Table 3: 3DGS -->
             <div id="table-3" class="table-content">
-              <table class="table is-striped is-hoverable is-fullwidth">
+              <table class="table is-striped is-hoverable is-fullwidth multi-dataset-table">
                 <thead>
                   <tr>
-                    <th>Model</th>
-                    <th>EPE ↓</th>
-                    <th>3PE ↓</th>
-                    <th>D1 ↑</th>
-                    <th>D3 ↑</th>
+                    <th rowspan="2" style="vertical-align: middle;">Method</th>
+                    <th colspan="3" class="dataset-header" style="width: 160px;">5 frames</th>
+                    <th colspan="3" class="dataset-header" style="width: 160px;">10 frames</th>
+                    <th colspan="3" class="dataset-header" style="width: 160px;">[-30, 30] frames</th>
+                    <th colspan="2" class="dataset-header">Overall</th>
+                  </tr>
+                  <tr>
+                    <th>PSNR<span class="sort-arrow">↑</span></th>
+                    <th>>SSIM<span class="sort-arrow">↑</span></th>
+                    <th>>LPIP<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">PSNR <span class="sort-arrow">↑</span></th>
+                    <th>>SSIM<span class="sort-arrow">↑</span></th>
+                    <th>>LPIP<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">PSNR <span class="sort-arrow">↑</span></th>
+                    <th>>SSIM<span class="sort-arrow">↑</span></th>
+                    <th>>LPIP<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">imp. <span class="sort-arrow">↑</span></th>
+                    <th>rank <span class="sort-arrow">↓</span></th>
                   </tr>
                 </thead>
                 <tbody>
+
                   <tr>
-                    <td><strong>ZoeDepth</strong></td>
-                    <td>1.23</td>
-                    <td>2.45</td>
-                    <td>0.923</td>
-                    <td>0.987</td>
+                    <td><strong>w/o DFM</strong></td>
+                    <td>24.285</td><td class="cell-orange">0.803</td><td>0.151</td>
+                    <td class="dataset-split">21.767</td><td class="cell-yellow">0.729</td><td>0.203</td>
+                    <td class="dataset-split">21.241</td><td>0.705</td><td>0.230</td>
+                    <td class="dataset-split">-</td><td>-</td>
                   </tr>
+
                   <tr>
-                    <td><strong>DPT</strong></td>
-                    <td>1.45</td>
-                    <td>2.78</td>
-                    <td>0.901</td>
-                    <td>0.976</td>
+                    <td><strong>Midas</strong></td>
+                    <td class="cell-yellow">24.964</td><td class="cell-red">0.812</td><td class="cell-red">0.125</td>
+                    <td class="dataset-split cell-yellow">22.290</td><td class="cell-red">0.735</td><td class="cell-red">0.179</td>
+                    <td class="dataset-split cell-orange">21.769</td><td class="cell-orange">0.710</td><td class="cell-red">0.212</td>
+                    <td class="dataset-split cell-red">+5.24</td><td class="cell-red">1</td>
                   </tr>
+
                   <tr>
-                    <td><strong>MiDaS</strong></td>
-                    <td>1.67</td>
-                    <td>3.12</td>
-                    <td>0.878</td>
-                    <td>0.964</td>
+                    <td><strong>DAV2-Rel</strong></td>
+                    <td class="cell-orange">24.965</td><td class="cell-red">0.812</td><td class="cell-yellow">0.129</td>
+                    <td class="dataset-split cell-orange">22.305</td><td class="cell-orange">0.733</td><td class="cell-yellow">0.185</td>
+                    <td class="dataset-split cell-yellow">21.703</td><td class="cell-yellow">0.706</td><td class="cell-yellow">0.218</td>
+                    <td class="dataset-split cell-yellow">+4.21</td><td class="cell-yellow">3</td>
                   </tr>
+
+                  <tr>
+                    <td><strong>DAV2-Met</strong></td>
+                    <td class="cell-red">25.000</td><td class="cell-red">0.812</td><td class="cell-orange">0.128</td>
+                    <td class="dataset-split cell-red">22.341</td><td class="cell-red">0.735</td><td class="cell-yellow">0.182</td>
+                    <td class="dataset-split cell-red">21.842</td><td class="cell-red">0.711</td><td class="cell-orange">0.215</td>
+                    <td class="dataset-split cell-orange">+4.81</td><td class="cell-orange">2</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>Metric3DV2</strong></td>
+                    <td>24.468</td><td class="cell-yellow">0.787</td><td>0.150</td>
+                    <td class="dataset-split">21.994</td><td>0.713</td><td>0.204</td>
+                    <td class="dataset-split">21.396</td><td>0.690</td><td>0.233</td>
+                    <td class="dataset-split">-0.05</td><td>5</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>UniDepth</strong></td>
+                    <td>23.983</td><td>0.786</td><td>0.145</td>
+                    <td class="dataset-split">21.530</td><td>0.708</td><td>0.202</td>
+                    <td class="dataset-split">21.036</td><td>0.687</td><td>0.235</td>
+                    <td class="dataset-split">-0.10</td><td>6</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>Marigold</strong></td>
+                    <td>23.974</td><td>0.779</td><td>0.162</td>
+                    <td class="dataset-split">21.515</td><td>0.701</td><td>0.219</td>
+                    <td class="dataset-split">20.952</td><td>0.676</td><td>0.248</td>
+                    <td class="dataset-split">-4.19</td><td>8</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>GenPercept</strong></td>
+                    <td>24.119</td><td class="cell-yellow">0.787</td><td>0.140</td>
+                    <td class="dataset-split">21.489</td><td>0.705</td><td>0.197</td>
+                    <td class="dataset-split">21.029</td><td>0.682</td><td>0.230</td>
+                    <td class="dataset-split">-0.14</td><td>4</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>MoGe</strong></td>
+                    <td>23.930</td><td>0.780</td><td>0.144</td>
+                    <td class="dataset-split">21.309</td><td>0.696</td><td>0.202</td>
+                    <td class="dataset-split">20.851</td><td>0.673</td><td>0.235</td>
+                    <td class="dataset-split">-1.60</td><td>7</td>
+                  </tr>
+
                 </tbody>
               </table>
             </div>
 
+
             <!-- Table 4: SLAM -->
             <div id="table-4" class="table-content">
-              <table class="table is-striped is-hoverable is-fullwidth">
+              <table class="table is-striped is-hoverable is-fullwidth multi-dataset-table">
                 <thead>
                   <tr>
-                    <th>Model</th>
-                    <th>Chamfer Distance ↓</th>
-                    <th>F-Score ↑</th>
-                    <th>Precision ↑</th>
-                    <th>Recall ↑</th>
+                    <th rowspan="2" style="vertical-align: middle;">Method</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">rm-0</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">rm-1</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">rm-2</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">off-0</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">off-1</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">off-2</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">off-3</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">off-4</th>
+                    <th colspan="2" class="dataset-header" style="width: 160px;">Overall</th>
+                  </tr>
+                  <tr>
+                    <th>acc<span class="sort-arrow">↓</span></th>
+                    <th>comp<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">acc<span class="sort-arrow">↓</span></th>
+                    <th>comp<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">acc<span class="sort-arrow">↓</span></th>
+                    <th>comp<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">acc<span class="sort-arrow">↓</span></th>
+                    <th>comp<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">acc<span class="sort-arrow">↓</span></th>
+                    <th>comp<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">acc<span class="sort-arrow">↓</span></th>
+                    <th>comp<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">acc<span class="sort-arrow">↓</span></th>
+                    <th>comp<span class="sort-arrow">↓</span></th>
+                    <th class="dataset-split">acc<span class="sort-arrow">↓</span></th>
+                    <th>comp<span class="sort-arrow">↓</span></th>
+                    <!-- <th class="dataset-split">imp. <span class="sort-arrow">↑</span></th>
+                    <th>rank <span class="sort-arrow">↓</span></th> -->
+                    <th class="dataset-split">imp.</th>
+                    <th>rank</th>
                   </tr>
                 </thead>
                 <tbody>
+
                   <tr>
-                    <td><strong>ZoeDepth</strong></td>
-                    <td>0.156</td>
-                    <td>0.847</td>
-                    <td>0.892</td>
-                    <td>0.823</td>
+                    <td><strong>w/o DFM</strong></td>
+                    <td>3.37</td><td>3.93</td>
+                    <td class="dataset-split">4.01</td><td>4.61</td>
+                    <td class="dataset-split">3.58</td><td>3.97</td>
+                    <td class="dataset-split">7.26</td><td>8.25</td>
+                    <td class="dataset-split">5.82</td><td>6.52</td>
+                    <td class="dataset-split">6.98</td><td>7.72</td>
+                    <td class="dataset-split">6.98</td><td>6.92</td>
+                    <td class="dataset-split">4.26</td><td class="cell-yellow">6.09</td>
+                    <td class="dataset-split">-</td><td>-</td>
                   </tr>
+
                   <tr>
-                    <td><strong>DPT</strong></td>
-                    <td>0.178</td>
-                    <td>0.823</td>
-                    <td>0.867</td>
-                    <td>0.798</td>
+                    <td><strong>Midas</strong></td>
+                    <td>3.25</td><td>3.63</td>
+                    <td class="dataset-split cell-yellow">3.59</td><td>4.12</td>
+                    <td class="dataset-split">3.49</td><td class="cell-yellow">3.78</td>
+                    <td class="dataset-split">8.09</td><td>9.04</td>
+                    <td class="dataset-split">6.02</td><td>7.08</td>
+                    <td class="dataset-split cell-orange">4.63</td><td class="cell-red">6.19</td>
+                    <td class="dataset-split cell-red">4.93</td><td class="cell-orange">5.40</td>
+                    <td class="dataset-split cell-orange">3.95</td><td class="cell-red">5.71</td>
+                    <td class="dataset-split">+2.32</td><td>5</td>
                   </tr>
+                  
+
                   <tr>
-                    <td><strong>MiDaS</strong></td>
-                    <td>0.201</td>
-                    <td>0.798</td>
-                    <td>0.843</td>
-                    <td>0.774</td>
+                    <td><strong>DAV2-Rel</strong></td>
+                    <td>3.30</td><td>3.92</td>
+                    <td class="dataset-split cell-orange">3.52</td><td class="cell-red">3.85</td>
+                    <td class="dataset-split cell-red">3.28</td><td class="cell-red">3.59</td>
+                    <td class="dataset-split cell-orange">6.16</td><td class="cell-orange">6.94</td>
+                    <td class="dataset-split">5.78</td><td>6.62</td>
+                    <td class="dataset-split">6.55</td><td>7.09</td>
+                    <td class="dataset-split">7.00</td><td>6.43</td>
+                    <td class="dataset-split">4.26</td><td class="cell-yellow">6.09</td>
+                    <td class="dataset-split cell-red">+10.00</td><td class="cell-red">1</td>
                   </tr>
+
+                  <tr>
+                    <td><strong>DAV2-Met</strong></td>
+                    <td class="cell-yellow">3.22</td><td class="cell-red">3.39</td>
+                    <td class="dataset-split cell-red">3.48</td><td class="cell-orange">3.98</td>
+                    <td class="dataset-split cell-yellow">3.47</td><td>3.87</td>
+                    <td class="dataset-split">8.58</td><td>9.64</td>
+                    <td class="dataset-split cell-yellow">4.59</td><td class="cell-orange">5.40</td>
+                    <td class="dataset-split">6.38</td><td>7.43</td>
+                    <td class="dataset-split">6.13</td><td class="cell-yellow">5.59</td>
+                    <td class="dataset-split cell-yellow">3.98</td><td>6.29</td>
+                    <td class="dataset-split">+1.95</td><td>6</td>
+                  </tr>
+
+                  <tr>
+                    <td class="cell-gray"><strong>Metric3DV2</strong></td>
+                    <td class="cell-gray">3.48</td><td class="cell-gray">3.64</td>
+                    <td class="dataset-split cell-gray">3.45</td><td class="cell-gray">3.93</td>
+                    <td class="dataset-split cell-gray">3.73</td><td class="cell-gray">4.09</td>
+                    <td class="dataset-split cell-gray">9.55</td><td class="cell-gray">10.53</td>
+                    <td class="dataset-split cell-gray">5.82</td><td class="cell-gray">6.41</td>
+                    <td class="dataset-split cell-gray">5.20</td><td class="cell-gray">6.67</td>
+                    <td class="dataset-split cell-gray">6.73</td><td class="cell-gray">6.78</td>
+                    <td class="dataset-split cell-gray">4.51</td><td class="cell-gray">6.65</td>
+                    <td class="dataset-split cell-gray">-4.19</td><td class="cell-gray">-</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>UniDepth</strong></td>
+                    <td class="cell-orange">3.11</td><td class="cell-yellow">3.49</td>
+                    <td class="dataset-split">3.73</td><td>4.38</td>
+                    <td class="dataset-split">3.80</td><td>4.06</td>
+                    <td class="dataset-split cell-red">5.96</td><td class="cell-red">6.91</td>
+                    <td class="dataset-split">5.05</td><td>6.05</td>
+                    <td class="dataset-split">6.48</td><td>7.41</td>
+                    <td class="dataset-split cell-yellow">5.83</td><td>5.95</td>
+                    <td class="dataset-split">4.60</td><td>6.76</td>
+                    <td class="dataset-split cell-orange">+7.08</td><td class="cell-orange">2</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>Marigold</strong></td>
+                    <td class="cell-red">3.01</td><td>3.67</td>
+                    <td class="dataset-split">3.77</td><td class="cell-yellow">4.07</td>
+                    <td class="dataset-split">3.70</td><td>4.00</td>
+                    <td class="dataset-split">7.07</td><td>7.93</td>
+                    <td class="dataset-split">6.23</td><td>7.01</td>
+                    <td class="dataset-split cell-yellow">4.83</td><td class="cell-yellow">6.43</td>
+                    <td class="dataset-split">6.32</td><td>6.26</td>
+                    <td class="dataset-split">4.52</td><td>6.79</td>
+                    <td class="dataset-split">+4.67</td><td>4</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>GenPercept</strong></td>
+                    <td>3.28</td><td class="cell-orange">3.47</td>
+                    <td class="dataset-split">3.77</td><td>4.34</td>
+                    <td class="dataset-split cell-orange">3.33</td><td class="cell-orange">3.73</td>
+                    <td class="dataset-split cell-yellow">7.06</td><td class="cell-yellow">7.65</td>
+                    <td class="dataset-split cell-red">4.14</td><td class="cell-red">5.06</td>
+                    <td class="dataset-split cell-red">4.38</td><td class="cell-orange">6.35</td>
+                    <td class="dataset-split cell-orange">5.30</td><td class="cell-red">5.05</td>
+                    <td class="dataset-split">4.40</td><td>6.20</td>
+                    <td class="dataset-split cell-yellow">+6.16</td><td class="cell-yellow">3</td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>MoGe</strong></td>
+                    <td>3.26</td><td>3.67</td>
+                    <td class="dataset-split">3.67</td><td>4.23</td>
+                    <td class="dataset-split">3.89</td><td>4.33</td>
+                    <td class="dataset-split">8.86</td><td>9.83</td>
+                    <td class="dataset-split cell-orange">4.55</td><td class="cell-yellow">5.58</td>
+                    <td class="dataset-split">5.68</td><td>6.73</td>
+                    <td class="dataset-split">6.40</td><td>6.32</td>
+                    <td class="dataset-split cell-red">3.92</td><td class="cell-orange">5.98</td>
+                    <td class="dataset-split">-4.04</td><td>7</td>
+                  </tr>
+
                 </tbody>
               </table>
             </div>
@@ -513,24 +775,50 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3" style="margin-top: -30px">Observations</h2>
+        <h2 class="title is-3" style="margin-top: -30px">Observations and Findings</h2>
         <div class="content has-text-justified">
-          
-          <h3>Task Definition</h3>
-          <p>
-            xx
-          </p>
-
-          <h3>Dataset Collection</h3>
-          <p>
-            xx
-          </p>
-
+          <div class="qa-section">
+            <div class="qa-item">
+              <div class="qa-question"><span>1. Are DFMs good for downstream tasks?</span></div>
+              <div class="qa-answer">Most depth foundation models improve the performance of downstream tasks, highlighting their potential for broader applications in the future.</div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-question"><span>2. Which DFMs are the best for the downstream tasks?</span></div>
+              <div class="qa-answer">DAV2 achieves the best results across proxy tasks, demonstrating the benefits of scaling up training data and incorporating synthetic data.</div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-question"><span>3. Which kind of DFMs are the best for the downstream tasks?</span></div>
+              <div class="qa-answer">Affine-invariant disparity methods consistently outperform other depth estimation approaches, even with MiDaS being the oldest method among them</div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-question"><span>4. Which metric DFM is the best for the downstream tasks?</span></div>
+              <div class="qa-answer">
+                <ul>
+                  <li>Despite being fine-tuned on a single dataset (Hypersim, synthetic), DAV2-Met significantly outperforms other metric depth models (Metric3DV2, UniDepth) trained on multiple datasets. This somehow aligns with the conclusion of ZoeDepth that fine-tuning a well-pretrained affine-invariant disparity model enhances metric depth estimation.</li>
+                  <li>Moreover, the performance gap also suggests that incorporating synthetic data for metric depth training might be crucial, as it allows models to learn high-frequency details that are often lost in real-world datasets.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-question"><span>5. Which diffusion-based DFM is the best for the downstream tasks?</span></div>
+              <div class="qa-answer">The performance improvement from Marigold to GenPercept underscores the importance of effective fine-tuning strategies for Stable Diffusion, a powerful foundation model. Expanding the training data could further unlock their potential, following the success of DAV2, as the current fine-tuning process is limited to VKITTI and Hypersim.</div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-question"><span>6. How about the latest kind of DFM?</span></div>
+              <div class="qa-answer">MoGe, as a novel approach for geometry estimation, also demonstrates its potential on BenchDepth.</div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-question"><span>7. How about the higher-level tasks?</span></div>
+              <div class="qa-answer">For the highest-level task, VLM spatial understanding, all methods yield comparable results. This suggests that at this higher level, different depth estimation approaches can be equally effective.</div>
+            </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+
 
 <section class="section">
   <div class="container is-max-desktop">
